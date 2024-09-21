@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Employee>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container mt-5">
+    <h1 class="text-primary text-center">Employee List</h1>
+
+    <div class="d-flex justify-content-between mb-3 align-items-center">
+        <a asp-action="Add" class="btn btn-primary">
+            <i class="bi bi-plus-circle"></i>
+            Create New Employee
+        </a>
+        <form asp-action="Index" method="get" class="input-group" style="width: 250px;">
+            <input id="search-focus" type="search" name="searchTerm" class="form-control" placeholder="Search" aria-label="Search" />
+            <button type="submit" class="btn btn-primary">
+                <i class="bi bi-search"></i>
+            </button>
+        </form>
+    </div>
+
+
+
+
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-warning text-center">
+            No Employees available.
+        </div>
+    }
+    else
+    {
+        <table class="table table-bordered table-hover">
+            <thead class="thead-light">
+                <tr class="text-center">
+                    <th>Number</th>
+                    <th>Full Name</th>
+                    <th>Status</th>
+                    <th>Department Name</th>
+                    <th>Details</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.Count(); i++)
+                {
+                    var employee = Model.ElementAt(i);
+                    <tr class="text-center">
+                        <td>@(i + 1)</td>
+                        <td>@employee.FullName</td>
+                        <td>@employee.Status</td>
+                        <td>@employee.Department.DepartmentName</td>
+                        <td><a asp-action="Details" asp-route-id="@employee.EmployeeId" class="btn btn-warning">
+                            <i class="bi bi-eye-fill"></i>
+                            Details</a>
+                        </td>
+                        <td><a asp-action="Edit" asp-route-id="@employee.EmployeeId" class="btn btn-info">
+                            <i class="bi bi-pencil-square"></i>
+                            Edit</a></td>
+                        <td>
+                            <a asp-action="Delete" asp-route-id="@employee.EmployeeId" class="btn btn-danger"
+                               onclick="return confirm('Are you sure to delete this employee?');">
+                                <i class="bi bi-trash"></i>
+                               Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

@@ -1,0 +1,75 @@
+﻿@model Employee
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1 class="text-center" style="color:darkblue">Employee Details</h1>
+
+<form method="get" class="container mb-5">
+    <div class="row mb-3">
+        <div class="col">
+            <label asp-for="FirstName" class="form-label">First Name</label>
+            <input asp-for="FirstName" class="form-control" readonly value="@Model.FirstName"/>
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+        </div>
+        <div class="col">
+            <label asp-for="LastName" class="form-label">Last Name</label>
+            <input asp-for="LastName" class="form-control" readonly value="@Model.LastName" />
+            <span asp-validation-for="LastName" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Full Name</label>
+        <input type="text" id="FullName" class="form-control" readonly value="@Model.FullName"/>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col">
+            <label asp-for="Email" class="form-label">Email</label>
+            <input asp-for="Email" class="form-control" type="email" readonly value="@Model.Email" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="col">
+            <label asp-for="PhoneNumber" class="form-label">Phone Number</label>
+            <input asp-for="PhoneNumber" class="form-control" readonly value="@Model.PhoneNumber" />
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col">
+            <label asp-for="DateOfBirth" class="form-label">Date of Birth</label>
+            <input asp-for="DateOfBirth" class="form-control" type="datetime" readonly value="@Model.DateOfBirth" />
+            <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+        </div>
+        <div class="col">
+            <label asp-for="DateOfJoining" class="form-label">Date of Joining</label>
+            <input asp-for="DateOfJoining" class="form-control" type="datetime" readonly value="@Model.DateOfJoining" />
+            <span asp-validation-for="DateOfJoining" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Gender" class="form-label">Gender</label>
+        <input asp-for="Gender" class="form-control" type="text" readonly value="@Model.Gender" />
+        <span asp-validation-for="Gender" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Department.DepartmentName" class="form-label">Department</label>
+        <input asp-for="Department.DepartmentName" class="form-control" type="text" readonly value="@Model.Department.DepartmentName" />
+        <span asp-validation-for="Department.DepartmentName" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Status" class="form-label">Status</label>
+        <input asp-for="Status" class="form-control" type="text" readonly value="@Model.Status" />
+        <span asp-validation-for="Status" class="text-danger"></span>
+    </div>
+
+    <div class="text-center">
+        <button asp-controller="Employee" asp-action="Edit" type="submit" class="btn btn-primary" asp-route-id="@Model.EmployeeId">Edit Employee</button>
+        <a asp-action="Index" class="btn btn-secondary">Back To List</a>
+    </div>
+</form>

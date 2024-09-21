@@ -1,0 +1,52 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container text-center">
+    <h1 class="display-4 my-5">Welcome to Employee Management System</h1>
+    <p class="lead">Manage your employees efficiently and effectively.</p>
+
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card h-100">
+                <img src="~/images/rag-doll-lined-up-one-red-through-magnifying-glass.jpg" class="card-img-top fixed-size" alt="Employee Overview">
+                <div class="card-body">
+                    <h5 class="card-title">Employee Overview</h5>
+                    <p class="card-text">Get a complete overview of your employees with all their details.</p>
+                    <a href="/Employee/Index" class="btn btn-primary">View Employees</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100">
+                <img src="~/images/rag-doll-lined-up-one-red-through-magnifying-glass.jpg" class="card-img-top fixed-size" alt="Add New Employee">
+                <div class="card-body">
+                    <h5 class="card-title">Add New Employee</h5>
+                    <p class="card-text">Easily add new employees to your system.</p>
+                    <a href="/Employee/Add" class="btn btn-primary">Add Employee</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100">
+                <img src="~/images/rag-doll-lined-up-one-red-through-magnifying-glass.jpg" class="card-img-top fixed-size" alt="Generate Report">
+                <div class="card-body">
+                    <h5 class="card-title">Generate Reports</h5>
+                    <p class="card-text">Create insightful reports to analyze employee data.</p>
+                    <a href="/Reports/Index" class="btn btn-primary">View Reports</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .fixed-size {
+        height: 200px;
+        width: 100%;
+        object-fit: cover;
+    }
+    .card {
+        height: 100%;
+    }
+</style>

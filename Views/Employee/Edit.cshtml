@@ -1,0 +1,103 @@
+﻿@model Employee
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1 class="text-center" style="color:darkblue">Edit Employee</h1>
+
+<form asp-action="Edit" method="post" class="container mb-5">
+    <!-- Hidden fields for EmployeeId and DepartmentId -->
+    <input type="hidden" asp-for="EmployeeId" />
+    <input type="hidden" asp-for="DepartmentId" />
+
+    <div class="row mb-3">
+        <div class="col">
+            <label asp-for="FirstName" class="form-label">First Name</label>
+            <input asp-for="FirstName" class="form-control" required />
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+        </div>
+        <div class="col">
+            <label asp-for="LastName" class="form-label">Last Name</label>
+            <input asp-for="LastName" class="form-control" required />
+            <span asp-validation-for="LastName" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Full Name</label>
+        <input type="text" asp-for="FullName" class="form-control" readonly />
+    </div>
+
+    <div class="row mb-3">
+        <div class="col">
+            <label asp-for="Email" class="form-label">Email</label>
+            <input asp-for="Email" class="form-control" type="email" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="col">
+            <label asp-for="PhoneNumber" class="form-label">Phone Number</label>
+            <input asp-for="PhoneNumber" class="form-control" />
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col">
+            <label asp-for="DateOfBirth" class="form-label">Date of Birth</label>
+            <input asp-for="DateOfBirth" class="form-control" type="date" />
+            <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+        </div>
+        <div class="col">
+            <label asp-for="DateOfJoining" class="form-label">Date of Joining</label>
+            <input asp-for="DateOfJoining" class="form-control" type="date" />
+            <span asp-validation-for="DateOfJoining" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Gender" class="form-label">Gender</label>
+        <select asp-for="Gender" class="form-select" required>
+            <option value="">Select Gender</option>
+            @foreach (var gender in ViewBag.Gender)
+            {
+                <option value="@gender">@gender</option>
+            }
+        </select>
+        <span asp-validation-for="Gender" class="text-danger"></span>
+    </div>
+
+
+    <div class="mb-3">
+        <label asp-for="Department.DepartmentName" class="form-label">Departments</label>
+        <select asp-for="Department.DepartmentName" class="form-select" required>
+            <option value="">Select Status</option>
+            @foreach (var department in ViewBag.Departments)
+            {
+                <option value="@department">@department</option>
+            }
+        </select>
+        <span asp-validation-for="Department.DepartmentName" class="text-danger"></span>
+    </div>
+
+
+
+
+    <div class="mb-3">
+        <label asp-for="Status" class="form-label">Status</label>
+        <select asp-for="Status" class="form-select" required>
+            <option value="">Select Status</option>
+            @foreach (var status in ViewBag.Status)
+            {
+                <option value="@status">@status</option>
+            }
+        </select>
+        <span asp-validation-for="Status" class="text-danger"></span>
+    </div>
+
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary">Edit Employee</button>
+        <a asp-action="Index" class="btn btn-secondary">Back To List</a>
+    </div>
+</form>
+
+<partial name="_FullNameScriptsPartial" />
