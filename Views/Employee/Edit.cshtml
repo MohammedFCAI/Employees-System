@@ -70,7 +70,7 @@
     <div class="mb-3">
         <label asp-for="Department.DepartmentName" class="form-label">Departments</label>
         <select asp-for="Department.DepartmentName" class="form-select" required>
-            <option value="">Select Status</option>
+            <option value="">Select Department</option>
             @foreach (var department in ViewBag.Departments)
             {
                 <option value="@department">@department</option>
@@ -79,6 +79,13 @@
         <span asp-validation-for="Department.DepartmentName" class="text-danger"></span>
     </div>
 
+    <div class="mb-3">
+        <label asp-for="ShiftId" class="form-label">Shifts</label>
+        <select asp-for="ShiftId" class="form-select" asp-items="ViewBag.ShiftsIdName" required>
+            <option value="">Select Shift</option>
+        </select>
+        <span asp-validation-for="ShiftId" class="text-danger"></span>
+    </div>
 
 
 

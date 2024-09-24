@@ -37,7 +37,8 @@ namespace EmployeeManagement.Controllers
         public IActionResult Add()
         {
             var departments = _unitOfWork.Departments.GetAll();
-            return View(new EmployeeViewModel() { Departments = departments});
+            var shifts = _unitOfWork.ShiftRepository.GetAll();
+            return View(new EmployeeViewModel() { Departments = departments, Shifts = shifts});
         }
 
 
@@ -56,7 +57,8 @@ namespace EmployeeManagement.Controllers
                     Email = model.Email,
                     Status = model.Status,
                     Gender = model.Gender,
-                    Department = _unitOfWork.Departments.GetById(model.DepartmentId)
+                    Department = _unitOfWork.Departments.GetById(model.DepartmentId),
+                    Shift = _unitOfWork.ShiftRepository.GetById(model.ShiftId)
                 };
 
                 _unitOfWork.Employees.Add(employee);
@@ -71,6 +73,11 @@ namespace EmployeeManagement.Controllers
         public IActionResult Details(int id)
         {
             var employee = _unitOfWork.EmployeeRepository.GetByIdAsNoTracking(id);
+            if(employee.Shift == null)
+            {
+                employee.Shift = new Shift();
+            }
+
             if(employee != null)
             {
                 return View(employee);
@@ -89,6 +96,10 @@ namespace EmployeeManagement.Controllers
                 //ViewBag.Departments = new SelectList(_unitOfWork.Departments.GetAll(), "DepartmentId", "DepartmentName");
 
                 ViewBag.Departments = _unitOfWork.DepartmentRepository.GetDepartmentsName();
+                ViewBag.Shifts = _unitOfWork.ShiftRepository.GetShiftsName();
+                //ViewBag.ShiftsIdName = _unitOfWork.ShiftRepository.GetShiftsIdAndName();
+                ViewBag.ShiftsIdName = new SelectList(_unitOfWork.ShiftRepository.GetShiftsIdAndName(), "Id", "Name", employee.ShiftId);
+
                 ViewBag.Gender = Enum.GetValues(typeof(Gender))
                    .Cast<Gender>()
                    .Select(e => e.ToString())
@@ -118,6 +129,8 @@ namespace EmployeeManagement.Controllers
                 }
 
                 var newDepartment = _unitOfWork.DepartmentRepository.FindDepartmentByName(model.Department.DepartmentName);
+                //var newShift = _unitOfWork.ShiftRepository.FindShiftByName(model.Shift.Name);
+                var newShift = _unitOfWork.ShiftRepository.GetById(model.ShiftId.Value);
 
                 // Update the existing employee properties
                 employee.FirstName = model.FirstName;
@@ -129,6 +142,8 @@ namespace EmployeeManagement.Controllers
                 employee.Gender = model.Gender;
                 employee.DepartmentId = newDepartment.DepartmentId; // Update DepartmentId
                 employee.Department = newDepartment;
+                employee.Shift = newShift;
+                employee.ShiftId = newShift.Id;
 
                 _unitOfWork.Employees.Update(employee);
                 _unitOfWork.Save();

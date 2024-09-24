@@ -56,6 +56,11 @@ namespace EmployeeManagement.Configurations
                 .WithOne(p => p.Employee)
                 .HasForeignKey(p => p.EmployeeId)
                 .OnDelete(DeleteBehavior.Cascade); // Setting up the relationship with Payrolls
+
+            builder.HasOne(e => e.Shift)
+              .WithMany(s => s.Employees) // One Shift has many Employees
+              .HasForeignKey(e => e.ShiftId)
+              .OnDelete(DeleteBehavior.Restrict); // Optional: Define deletion behavior
         }
     }
 }

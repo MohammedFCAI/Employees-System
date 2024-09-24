@@ -1,0 +1,33 @@
+﻿@model EmployeeManagement.Entities.Shift
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<h1 class="text-center" style="color:darkblue">Shift Details</h1>
+
+<form method="get" class="container mb-5">
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label">Name</label>
+        <input asp-for="Name" class="form-control" type="text" readonly value="@Model.Name" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="StartTime" class="form-label">Start Time</label>
+        <input asp-for="StartTime" class="form-control" type="text" readonly value="@Model.StartTime" />
+        <span asp-validation-for="StartTime" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="EndTime" class="form-label">End Time</label>
+        <input asp-for="EndTime" class="form-control" type="text" readonly value="@Model.EndTime" />
+        <span asp-validation-for="EndTime" class="text-danger"></span>
+    </div>
+
+    <div class="text-center">
+        <button asp-controller="Employee" asp-action="Edit" type="submit" class="btn btn-primary" asp-route-id="@Model.Id">Edit Employee</button>
+        <a asp-action="Index" class="btn btn-secondary">Back To List</a>
+    </div>
+</form>

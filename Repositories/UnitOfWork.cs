@@ -16,6 +16,7 @@ namespace EmployeeManagement.Repositories
             Payrolls = new GenericRepository<Payroll>(context);
             DepartmentRepository = new DepartmentRepository(context);
             EmployeeRepository = new EmployeeRepository(context);
+            ShiftRepository = new ShiftRepository(context);
         }
 
         public IGenericRepository<Employee> Employees { get; private set; }
@@ -23,6 +24,7 @@ namespace EmployeeManagement.Repositories
         public IGenericRepository<Payroll> Payrolls { get; private set; }
         public IDepartmentRepository DepartmentRepository { get; private set; }
         public IEmployeeRepository EmployeeRepository { get; private set; }
+        public IShiftRepository ShiftRepository { get; private set; }
 
         public void Save()
         {

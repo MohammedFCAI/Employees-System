@@ -15,11 +15,17 @@ namespace EmployeeManagement.Entities
         public Status Status { get; set; }
         public Gender Gender { get; set; }
         public int DepartmentId { get; set; }
-        [ValidateNever]
-        public Department Department { get; set; } 
 
         [ValidateNever]
-        public ICollection<Payroll>? Payrolls { get; set; } 
+        public Department? Department { get; set; } 
+
+        [ValidateNever]
+        public ICollection<Payroll>? Payrolls { get; set; }
+
+        public int? ShiftId { get; set; }
+        [ValidateNever]
+        public Shift? Shift { get; set; }
+
     }
 
 }

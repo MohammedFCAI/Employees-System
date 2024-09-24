@@ -17,5 +17,8 @@ namespace EmployeeManagement.ViewModel
         public Gender Gender { get; set; }
         public int DepartmentId { get; set; }
         public IEnumerable<Department>? Departments { get; set; }
+
+        public int ShiftId { get; set; }
+        public IEnumerable<Shift>? Shifts { get; set; }
     }
 }

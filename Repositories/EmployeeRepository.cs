@@ -21,7 +21,7 @@ namespace EmployeeManagement.Repositories
 
         public Employee GetByIdAsNoTracking(int id)
         { 
-            return _context.Employees.Include(e => e.Department).AsNoTracking().FirstOrDefault(i => i.EmployeeId == id);
+            return _context.Employees.Include(e => e.Department).Include(e => e.Shift).AsNoTracking().FirstOrDefault(i => i.EmployeeId == id);
         }
 
         public Employee GetById(int id)

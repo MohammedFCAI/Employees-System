@@ -9,6 +9,7 @@ namespace EmployeeManagement.Interfaces
         IGenericRepository<Payroll> Payrolls { get; }
         IDepartmentRepository DepartmentRepository { get; }
         IEmployeeRepository EmployeeRepository { get; }
+        IShiftRepository ShiftRepository { get; }
         void Save();
     }
 

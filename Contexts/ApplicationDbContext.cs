@@ -22,5 +22,7 @@ namespace EmployeeManagement.Contexts
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<Payroll> Payrolls { get; set; }
+        public DbSet<Shift> Shifts { get; set; }
+        // public DbSet<Attendance> Attendances { get; set; }
     }
 }
